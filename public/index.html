@@ -2,50 +2,67 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Food App</title>
+  <title>FoodHub</title>
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
+
+<!-- 🔶 Navbar -->
 <nav class="navbar">
   <h2>🍽️ FoodHub</h2>
   <input type="text" placeholder="Search food..." id="searchBox" onkeyup="searchFood()">
 </nav>
+
+<!-- 🔶 Categories -->
 <div class="categories">
   <button onclick="filterFood('all')">All</button>
   <button onclick="filterFood('burger')">🍔 Burger</button>
   <button onclick="filterFood('pizza')">🍕 Pizza</button>
   <button onclick="filterFood('pasta')">🍝 Pasta</button>
 </div>
-<div class="item burger">
-<div class="item pizza">
-<div class="item pasta">
+
+<!-- 🔶 Title -->
 <h1>🍔 Food Ordering App</h1>
 
+<!-- 🔶 Food Menu -->
 <div class="menu">
 
-  <div class="item">
+  <!-- Burger -->
+  <div class="item burger">
+    <img src="https://source.unsplash.com/150x100/?burger">
     <h2>🍔 Burger</h2>
     <p>₹120</p>
-    <button onclick="addToCart('Burger')">Add to Cart</button>
+    <button onclick="addToCart('Burger', 120)">Add to Cart</button>
   </div>
 
-  <div class="item">
+  <!-- Pizza -->
+  <div class="item pizza">
+    <img src="https://source.unsplash.com/150x100/?pizza">
     <h2>🍕 Pizza</h2>
     <p>₹250</p>
-    <button onclick="addToCart('Pizza')">Add to Cart</button>
+    <button onclick="addToCart('Pizza', 250)">Add to Cart</button>
   </div>
 
-  <div class="item">
+  <!-- Pasta -->
+  <div class="item pasta">
+    <img src="https://source.unsplash.com/150x100/?pasta">
     <h2>🍝 Pasta</h2>
     <p>₹180</p>
-    <button onclick="addToCart('Pasta')">Add to Cart</button>
+    <button onclick="addToCart('Pasta', 180)">Add to Cart</button>
   </div>
 
 </div>
 
+<!-- 🔶 Cart Section -->
 <h2>🛒 Cart:</h2>
 <ul id="cart"></ul>
 
+<!-- 🔶 Total -->
+<h3 id="total">Total: ₹0</h3>
+
+<!-- 🔶 JS -->
 <script src="script.js"></script>
+
 </body>
 </html>
