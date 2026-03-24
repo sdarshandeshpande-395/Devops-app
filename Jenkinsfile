@@ -6,13 +6,6 @@ pipeline {
         IMAGE_NAME = "devops-app"
     }
 
-    stages {
-
-        stage('Checkout') {
-            steps {
-                git 'https://github.com/sdarshandeshpande-395/Devops-app.git'
-            }
-        }
 
         stage('Build') {
             steps {
