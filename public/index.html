@@ -17,12 +17,13 @@
         padding: 20px;
         background-color: #bf360c;
         color: white;
+        border-bottom: 5px solid #ffcc80;
     }
 
-    /* Unique traditional font style */
+    /* Unique traditional-style font */
     .title {
         font-size: 50px;
-        letter-spacing: 5px;
+        letter-spacing: 6px;
         text-transform: uppercase;
         font-weight: bold;
         font-family: "Papyrus", "Brush Script MT", cursive;
@@ -37,10 +38,11 @@
 
     .item {
         border: 2px solid #d84315;
-        border-radius: 10px;
+        border-radius: 12px;
         padding: 15px;
         background-color: #fff8e1;
         text-align: center;
+        box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
     }
 
     .item h3 {
@@ -53,7 +55,7 @@
         border: none;
         padding: 10px;
         cursor: pointer;
-        border-radius: 5px;
+        border-radius: 6px;
     }
 
     button:hover {
@@ -67,12 +69,31 @@
         background: white;
         padding: 15px;
         border: 2px solid #d84315;
-        border-radius: 10px;
-        width: 250px;
+        border-radius: 12px;
+        width: 260px;
+        box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
     }
 
     .cart h2 {
         margin-top: 0;
+        text-align: center;
+    }
+
+    .remove-btn {
+        background: red;
+        margin-left: 10px;
+        padding: 5px 8px;
+        font-size: 12px;
+    }
+
+    .clear-btn {
+        margin-top: 10px;
+        width: 100%;
+        background: #6d4c41;
+    }
+
+    .clear-btn:hover {
+        background: #4e342e;
     }
 </style>
 </head>
@@ -90,6 +111,7 @@
     <h2>Cart</h2>
     <ul id="cart-items"></ul>
     <h3>Total: ₹<span id="total">0</span></h3>
+    <button class="clear-btn" onclick="clearCart()">Clear Cart</button>
 </div>
 
 <script>
@@ -111,12 +133,13 @@
         {name: "Rasgulla", price: 70}
     ];
 
-    let total = 0;
+    let cart = [];
 
     const menu = document.getElementById("menu");
     const cartItems = document.getElementById("cart-items");
     const totalDisplay = document.getElementById("total");
 
+    // Load menu
     dishes.forEach((dish) => {
         const div = document.createElement("div");
         div.classList.add("item");
@@ -124,18 +147,45 @@
         div.innerHTML = `
             <h3>${dish.name}</h3>
             <p>₹${dish.price}</p>
-            <button onclick="addToCart('${dish.name}', ${dish.price})">Add to Cart</button>
+            <button onclick="addToCart('${dish.name}', ${dish.price})">
+                Add to Cart
+            </button>
         `;
 
         menu.appendChild(div);
     });
 
     function addToCart(name, price) {
-        const li = document.createElement("li");
-        li.textContent = `${name} - ₹${price}`;
-        cartItems.appendChild(li);
+        cart.push({ name, price });
+        renderCart();
+    }
 
-        total += price;
+    function removeFromCart(index) {
+        cart.splice(index, 1);
+        renderCart();
+    }
+
+    function clearCart() {
+        cart = [];
+        renderCart();
+    }
+
+    function renderCart() {
+        cartItems.innerHTML = "";
+        let total = 0;
+
+        cart.forEach((item, index) => {
+            total += item.price;
+
+            const li = document.createElement("li");
+            li.innerHTML = `
+                ${item.name} - ₹${item.price}
+                <button class="remove-btn" onclick="removeFromCart(${index})">X</button>
+            `;
+
+            cartItems.appendChild(li);
+        });
+
         totalDisplay.textContent = total;
     }
 </script>
