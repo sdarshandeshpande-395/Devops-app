@@ -1,15 +1,51 @@
 body {
-  font-family: Georgia;
+  font-family: 'Segoe UI', sans-serif;
+  margin: 0;
+  background: #f8f9fa;
   text-align: center;
+}
+
+h1 {
+  background: #ff6b6b;
+  color: white;
+  padding: 20px;
+  margin: 0;
 }
 
 .menu {
   display: flex;
   justify-content: center;
-  gap: 20px;
+  gap: 30px;
+  margin-top: 40px;
 }
 
 .item {
-  border: 1px solid #ccc;
+  background: white;
   padding: 20px;
+  border-radius: 15px;
+  width: 150px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  transition: transform 0.2s;
+}
+
+.item:hover {
+  transform: scale(1.05);
+}
+
+button {
+  background: #ff6b6b;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #ff3b3b;
+}
+
+#cart {
+  list-style: none;
+  padding: 0;
 }
