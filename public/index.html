@@ -1,69 +1,144 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Bhojnalaya</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<title>Bhojanalaya</title>
+
+<style>
+    body {
+        margin: 0;
+        font-family: 'Georgia', serif;
+        background: linear-gradient(to right, #fff3e0, #ffe0b2);
+        color: #4e342e;
+    }
+
+    header {
+        text-align: center;
+        padding: 20px;
+        background-color: #bf360c;
+        color: white;
+    }
+
+    /* Unique traditional font style */
+    .title {
+        font-size: 50px;
+        letter-spacing: 5px;
+        text-transform: uppercase;
+        font-weight: bold;
+        font-family: "Papyrus", "Brush Script MT", cursive;
+    }
+
+    .menu {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+        padding: 20px;
+    }
+
+    .item {
+        border: 2px solid #d84315;
+        border-radius: 10px;
+        padding: 15px;
+        background-color: #fff8e1;
+        text-align: center;
+    }
+
+    .item h3 {
+        margin: 10px 0;
+    }
+
+    button {
+        background-color: #d84315;
+        color: white;
+        border: none;
+        padding: 10px;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+
+    button:hover {
+        background-color: #bf360c;
+    }
+
+    .cart {
+        position: fixed;
+        right: 20px;
+        top: 20px;
+        background: white;
+        padding: 15px;
+        border: 2px solid #d84315;
+        border-radius: 10px;
+        width: 250px;
+    }
+
+    .cart h2 {
+        margin-top: 0;
+    }
+</style>
 </head>
 
 <body>
 
-<!-- 🔶 Navbar -->
-<nav class="navbar">
-  <h2>Bhojnalaya</h2>
-  <input type="text" placeholder="Search food..." id="searchBox" onkeyup="searchFood()">
-</nav>
+<header>
+    <div class="title">Bhojanalaya</div>
+    <p>Authentic Indian Taste</p>
+</header>
 
-<!-- 🔶 Categories -->
-<div class="categories">
-  <button onclick="filterFood('all')">All</button>
-  <button onclick="filterFood('burger')">🍔 Burger</button>
-  <button onclick="filterFood('pizza')">🍕 Pizza</button>
-  <button onclick="filterFood('pasta')">🍝 Pasta</button>
+<div class="menu" id="menu"></div>
+
+<div class="cart">
+    <h2>Cart</h2>
+    <ul id="cart-items"></ul>
+    <h3>Total: ₹<span id="total">0</span></h3>
 </div>
 
-<!-- 🔶 Title -->
-<h1>🍔 Food Ordering App</h1>
+<script>
+    const dishes = [
+        {name: "Butter Chicken", price: 250},
+        {name: "Paneer Tikka", price: 200},
+        {name: "Masala Dosa", price: 120},
+        {name: "Biryani", price: 220},
+        {name: "Chole Bhature", price: 150},
+        {name: "Dal Makhani", price: 180},
+        {name: "Rajma Chawal", price: 140},
+        {name: "Pav Bhaji", price: 130},
+        {name: "Samosa", price: 40},
+        {name: "Vada Pav", price: 50},
+        {name: "Tandoori Roti", price: 20},
+        {name: "Palak Paneer", price: 190},
+        {name: "Aloo Paratha", price: 90},
+        {name: "Gulab Jamun", price: 80},
+        {name: "Rasgulla", price: 70}
+    ];
 
-<!-- 🔶 Food Menu -->
-<div class="menu">
+    let total = 0;
 
-  <!-- Burger -->
-  <div class="item burger">
-    <img src="https://source.unsplash.com/150x100/?burger">
-    <h2>Burger</h2>
-    <p>₹100</p>
-    <button onclick="addToCart('Burger', 120)">Add to Cart</button>
-  </div>
+    const menu = document.getElementById("menu");
+    const cartItems = document.getElementById("cart-items");
+    const totalDisplay = document.getElementById("total");
 
-  <!-- Pizza -->
-  <div class="item pizza">
-    <img src="https://source.unsplash.com/150x100/?pizza">
-    <h2>Pizza</h2>
-    <p>₹200</p>
-    <button onclick="addToCart('Pizza', 250)">Add to Cart</button>
-  </div>
+    dishes.forEach((dish) => {
+        const div = document.createElement("div");
+        div.classList.add("item");
 
-  <!-- Pasta -->
-  <div class="item pasta">
-    <img src="https://source.unsplash.com/150x100/?pasta">
-    <h2>Pasta</h2>
-    <p>₹150</p>
-    <button onclick="addToCart('Pasta', 180)">Add to Cart</button>
-  </div>
+        div.innerHTML = `
+            <h3>${dish.name}</h3>
+            <p>₹${dish.price}</p>
+            <button onclick="addToCart('${dish.name}', ${dish.price})">Add to Cart</button>
+        `;
 
-</div>
+        menu.appendChild(div);
+    });
 
-<!-- 🔶 Cart Section -->
-<h2>🛒 Cart:</h2>
-<ul id="cart"></ul>
+    function addToCart(name, price) {
+        const li = document.createElement("li");
+        li.textContent = `${name} - ₹${price}`;
+        cartItems.appendChild(li);
 
-<!-- 🔶 Total -->
-<h3 id="total">Total: ₹0</h3>
-
-<!-- 🔶 JS -->
-<script src="script.js"></script>
-<script src="script.js"></script>
+        total += price;
+        totalDisplay.textContent = total;
+    }
+</script>
 
 </body>
 </html>
