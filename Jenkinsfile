@@ -6,6 +6,7 @@ pipeline {
         IMAGE_NAME = "devops-app"
     }
 
+    stages {
 
         stage('Build') {
             steps {
@@ -15,7 +16,7 @@ pipeline {
 
         stage('Test') {
             steps {
-                echo "No tests added yet"
+                echo "No tests yet"
             }
         }
 
@@ -27,8 +28,8 @@ pipeline {
 
         stage('Docker Login') {
             steps {
-                withCredentials([string(credentialsId: 'docker-pass', variable: 'DOCKER_PASS')]) {
-                    sh 'echo $DOCKER_PASS | docker login -u $DOCKER_HUB_USERNAME --password-stdin'
+                withCredentials([usernamePassword(credentialsId: 'docker-creds', usernameVariable: 'USER', passwordVariable: 'PASS')]) {
+                    sh 'echo $PASS | docker login -u $USER --password-stdin'
                 }
             }
         }
