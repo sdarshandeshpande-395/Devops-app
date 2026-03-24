@@ -1,0 +1,15 @@
+body {
+  font-family: Georgia;
+  text-align: center;
+}
+
+.menu {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.item {
+  border: 1px solid #ccc;
+  padding: 20px;
+}

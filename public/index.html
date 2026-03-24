@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Food App</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1>🍔 Food Ordering App</h1>
+
+<div class="menu">
+  <div class="item">
+    <h2>Burger</h2>
+    <button onclick="addToCart('Burger')">Add to Cart</button>
+  </div>
+
+  <div class="item">
+    <h2>Pizza</h2>
+    <button onclick="addToCart('Pizza')">Add to Cart</button>
+  </div>
+
+  <div class="item">
+    <h2>Pasta</h2>
+    <button onclick="addToCart('Pasta')">Add to Cart</button>
+  </div>
+</div>
+
+<h2>Cart:</h2>
+<ul id="cart"></ul>
+
+<script src="script.js"></script>
+</body>
+</html>
