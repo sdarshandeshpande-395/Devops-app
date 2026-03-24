@@ -1,8 +1,24 @@
-function addToCart(item) {
-  const cart = document.getElementById("cart");
+function searchFood() {
+  let input = document.getElementById("searchBox").value.toLowerCase();
+  let items = document.querySelectorAll(".item");
 
-  const li = document.createElement("li");
-  li.textContent = "✅ " + item + " added";
+  items.forEach(item => {
+    if (item.innerText.toLowerCase().includes(input)) {
+      item.style.display = "block";
+    } else {
+      item.style.display = "none";
+    }
+  });
+}
 
-  cart.appendChild(li);
+function filterFood(category) {
+  let items = document.querySelectorAll(".item");
+
+  items.forEach(item => {
+    if (category === "all" || item.classList.contains(category)) {
+      item.style.display = "block";
+    } else {
+      item.style.display = "none";
+    }
+  });
 }

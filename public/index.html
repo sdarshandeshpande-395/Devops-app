@@ -6,7 +6,19 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
+<nav class="navbar">
+  <h2>🍽️ FoodHub</h2>
+  <input type="text" placeholder="Search food..." id="searchBox" onkeyup="searchFood()">
+</nav>
+<div class="categories">
+  <button onclick="filterFood('all')">All</button>
+  <button onclick="filterFood('burger')">🍔 Burger</button>
+  <button onclick="filterFood('pizza')">🍕 Pizza</button>
+  <button onclick="filterFood('pasta')">🍝 Pasta</button>
+</div>
+<div class="item burger">
+<div class="item pizza">
+<div class="item pasta">
 <h1>🍔 Food Ordering App</h1>
 
 <div class="menu">
